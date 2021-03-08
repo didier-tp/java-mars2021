@@ -1,0 +1,23 @@
+echo %PATH%
+echo %JAVA_HOME%
+================
+set PATH=C:\Program Files\Java\jdk-11.0.4\bin;%PATH%
+ou 
+set PATH=D:\Prog\java\openjdk-11+28_windows-x64_bin\jdk-11\bin;%PATH%
+ou ...
+-----
+et eventuellement
+set JAVA_HOME=C:\Program Files\Java\jdk-11.0.4
+ou 
+set JAVA_HOME=D:\Prog\java\openjdk-11+28_windows-x64_bin\jdk-11
+======
+
+javac --version
+java --version
+
+======
+Se placer dans répertoire d:\tp\tpJava (ou autre )
+là ou se trouve le sous répertoire tp
+=====
+javac tp\MyApp.java
+java tp.MyApp
