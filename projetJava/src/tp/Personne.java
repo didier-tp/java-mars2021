@@ -1,13 +1,13 @@
 package tp;
 
 public class Personne {
-	private String nom;
-	private int age;
-	private double poids;
+	private String nom; /*="?";*/ // null par defaut
+	private int age; //0 par defaut
+	private double poids; //0.0 par défaut
 	
 
 	public Personne() {
-		// super(); // v1, valeur par defaut selon type de données
+		super(); // v1, valeur par defaut selon type de données
 		
 		/*
 		//v2 : mes valeurs par defaut (que j'aime)
@@ -17,7 +17,7 @@ public class Personne {
 		*/
 		
 		//v3 (appel d'une autre variante du constructeur):
-		this("?" , 0, 50.0); 
+		//this("?" , 0, 50.0); 
 		
 	}
 

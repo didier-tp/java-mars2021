@@ -28,6 +28,17 @@ public class MyApp {
 		}else {
 			System.out.println("p1 et p2 ont des valeurs différentes");
 		}
+		
+		/*
+		int a; //variable locale (sans valeur par défaut)
+		int b; //à obligatoirement initialiser
+		int res = a + b;
+		*/
+		
+		int a=5; //variable locale (sans valeur par défaut)
+		int b=6; //à obligatoirement initialiser
+		int res = a + b;
+		
 	}
 	
 	public static void testCompte() {
