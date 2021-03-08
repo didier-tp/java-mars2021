@@ -6,7 +6,7 @@ public class MyApp {
 		System.out.println("Hello world 2");
         //testType();
         //testComparaison();
-        testCompte();
+        //testCompte();
 		testPersonne();
 	}
 	
@@ -17,7 +17,7 @@ public class MyApp {
 		p1.nom = "dupond" ; p1.age=40; p1.poids = 67.89;
 		p1.afficher();
 		p2 = new Personne();
-		p2.nom = "durand" ; p1.age=30; p1.poids = 77.56;
+		p2.nom = "durand" ; p2.age=30; p2.poids = 77.56;
 		System.out.println(p2.toString());
 		if(p1.equals(p2)) {
 			System.out.println("p1 et p2 ont les mêmes valeurs");
