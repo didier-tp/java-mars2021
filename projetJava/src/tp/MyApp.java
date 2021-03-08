@@ -14,10 +14,14 @@ public class MyApp {
 		Personne p1 = null;
 		Personne p2 = null;
 		p1 = new Personne();
-		p1.nom = "dupond" ; p1.age=40; p1.poids = 67.89;
+		p1.setNom("dupond") ; p1.setAge(40); p1.setPoids(67.89);
 		p1.afficher();
-		p2 = new Personne();
-		p2.nom = "durand" ; p2.age=30; p2.poids = 77.56;
+		/*p2 = new Personne();
+		p2.setNom("durand") ; p2.setAge(30); p2.setPoids( 77.56);*/
+		p2 = new Personne("durand" , 30 , 77.56);
+		System.out.println("le nom de p2 est " + p2.getNom());
+		p2.setAge(-80);//valeur qui sera refusée (pas  prise en compte)
+		p2.setAge(45);//valeur qui sera acceptée (prise en compte)
 		System.out.println(p2.toString());
 		if(p1.equals(p2)) {
 			System.out.println("p1 et p2 ont les mêmes valeurs");

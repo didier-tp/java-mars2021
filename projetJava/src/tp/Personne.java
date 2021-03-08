@@ -1,11 +1,68 @@
 package tp;
 
 public class Personne {
-	public String nom;
-	public int age;
-	public double poids;
+	private String nom;
+	private int age;
+	private double poids;
 	
-	
+
+	public Personne() {
+		// super(); // v1, valeur par defaut selon type de données
+		
+		/*
+		//v2 : mes valeurs par defaut (que j'aime)
+		this.nom="?";
+		this.age = 0;
+		this.poids = 50.0;
+		*/
+		
+		//v3 (appel d'une autre variante du constructeur):
+		this("?" , 0, 50.0); 
+		
+	}
+
+
+	public Personne(String nom, int age, double poids) {
+		super();
+		this.nom = nom;
+		this.age = age;
+		this.poids = poids;
+	}
+
+
+	public String getNom() {
+		return nom;
+	}
+
+
+	public void setNom(String nom) {
+		this.nom = nom;
+	}
+
+
+	public int getAge() {
+		return age;
+	}
+
+
+	public void setAge(int age) {
+		if(age >=0 )
+		    this.age = age;
+		else System.out.println("age négatif invalide"); 
+		//plus tard throw new RuntimeException("age négatif invalide");
+	}
+
+
+	public double getPoids() {
+		return poids;
+	}
+
+
+	public void setPoids(double poids) {
+		this.poids = poids;
+	}
+
+
 	@Override
 	public String toString() {
 		return "Personne [nom=" + nom + ", age=" + age + ", poids=" + poids + "]";
