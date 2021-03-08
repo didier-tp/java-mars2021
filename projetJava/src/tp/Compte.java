@@ -1,13 +1,26 @@
 package tp;
 
 public class Compte {
-	// Attributs (données internes):
-	public String numero;
-	public float solde;
-	// Méthodes (fonctions internes):
+	// Attributs privés:
+	private String numero;
+	private float solde;
+	// Accesseurs:
+	public String getNumero() { return numero;}
+	public void setNumero(String numero) { this.numero = numero; }
+	public float getSolde() { return solde; }
+	public void setSolde(float solde) { this.solde = solde; }
+	// Méthodes :
+	public Compte() { numero="0"; solde=0; } // constructeur par défaut
+	
+	
+	public Compte(String numero, float solde) {
+		super();
+		this.numero = numero;
+		this.solde = solde;
+	}
+	
 	public void debiter(float montant) { solde = solde - montant; }
 	public void crediter(float montant) { solde = solde + montant; }
-	
 	
 	@Override
 	public String toString() {

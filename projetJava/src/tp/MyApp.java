@@ -6,7 +6,7 @@ public class MyApp {
 		System.out.println("Hello world 2");
         //testType();
         //testComparaison();
-        //testCompte();
+        testCompte();
 		testPersonne();
 	}
 	
@@ -29,12 +29,15 @@ public class MyApp {
 	public static void testCompte() {
 		Compte c1, c2;
 		c1=new Compte();
-		c1.numero = "101"; c1.solde = 100;
-		c2 = new Compte();
-		c2.numero = "102"; c2.solde = 200;
+		c1.setNumero("101"); c1.setSolde(100);
+		/*c2 = new Compte();
+		c2.setNumero("102"); c2.setSolde(200);*/
+		c2 = new Compte ("102" , 200);
+		
 		c1.crediter(10); c2.debiter(10);
-		System.out.println("Le compte num = " + c1.numero + " a un solde de " + c1.solde );
-		System.out.println("Le compte num = " + c2.numero + " a un solde de " + c2.solde );
+		
+		System.out.println("Le compte num = " + c1.getNumero() + " a un solde de " + c1.getSolde() );
+		System.out.println("Le compte num = " + c2.getNumero() + " a un solde de " + c2.getSolde() );
 	    System.out.println("c1="+c1.toString());
 	}
 	
