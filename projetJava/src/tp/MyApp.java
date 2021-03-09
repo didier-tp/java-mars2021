@@ -1,5 +1,6 @@
 package tp;
 
+
 public class MyApp {
 
 	public static void main(String[] args) {
@@ -12,8 +13,9 @@ public class MyApp {
 		//testGc();
 		//testStatic();
 		//MyApp myApp = new MyApp(); myApp.testMath();//si testMath() n'est pas static
-		testEmploye();
-		testAvionV1();
+		//testEmploye();
+		//testAvionV1();
+		testPorte();
 	}
 	
 	public static void testAvionV1() {
@@ -135,14 +137,14 @@ public class MyApp {
 		//e1.afficher();
 		MyUtil.display(e1.toString());
 		
-		//eOuP=p1;
+		//eOuP=new Personne("toto",45,67.89);
 		eOuP=e1;
 		//eOuP=new Employe();
 		eOuP.incrementerAge(); 
 		if(eOuP instanceof Employe) {
 			//Employe eOuPasEmploye = (Employe) eOuP;
 			//eOuPasEmploye.setSalaire(2700.0);
-			((Employe)eOuP).setSalaire(2700.0);
+			((Employe)eOuP).setSalaire(2000.0);
 		}
 		
 		//Personne eOuP = null; quelques lignes au dessus
@@ -169,6 +171,39 @@ public class MyApp {
 		MyUtil.display("salaireTotal de eOuC=c1 :"+eOuC.getSalaireTotal());
 		eOuC=e1;
 		MyUtil.display("salaireTotal de eOuC=e1 :"+eOuC.getSalaireTotal());
+	}
+	
+	public static void testPorte() {
+		Porte p=null;
+		//p=new Porte(); // new Porte() maintenant interdit si classe Porte abstraite
+		PorteCoulissante pc = new PorteCoulissante();
+		PorteBattant pb = new PorteBattant();
+		p = pc;
+		p.ouvrir(); p.fermer(); //Polymorphisme
+		p.setCouleur("rouge"); System.out.println(" ... de couleur " + p.getCouleur());
+		/*
+		 En langage C , if( p.type == PORTE_COULISSANTE)
+		          ouvrirPorteCoulissante(p);
+		      else if( p.type == PORTE_BATTANT)
+		            ouvrirPorteBattant(p);
+		 */
+		p = pb;
+		p.ouvrir(); p.fermer(); //Polymorphisme
+		
+		//En plus des méthodes polymorphes abstraites ou concrètes ,
+		//une classe abstraite peut comporter des attributs et méthodes concrets (ici couleur):
+		p.setCouleur("vert");  System.out.println(" ... de couleur " + p.getCouleur());
+		
+		//------------- polymorphisme en boucle -----
+		Porte[] tabRefPortes = new Porte[2];
+		tabRefPortes[0]=pc;
+		tabRefPortes[1]=pb;
+		for(int i=0;i<2;i++) {
+			tabRefPortes[i].ouvrir();
+		}
+		for(int i=0;i<2;i++) {
+			tabRefPortes[i].fermer();
+		}
 	}
 	
 	public static void testPersonne() {

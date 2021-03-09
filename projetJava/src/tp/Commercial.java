@@ -5,6 +5,7 @@ public class Commercial extends Employe {
 	private Double ventesDuMois;
 	private Double tauxCommission;//en %
 
+
 	@Override
 	public Double getSalaireTotal() {
 		Double salaireFixe = super.getSalaireTotal();
@@ -17,6 +18,7 @@ public class Commercial extends Employe {
 		return salaireTotal;
 	}
 
+	
 	public Commercial() {
 		super();
 	}
