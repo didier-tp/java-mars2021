@@ -32,6 +32,10 @@ public class Personne {
 		this.age = age;
 		this.poids = poids;
 	}
+	
+	public void incrementerAge() {
+		this.age++;
+	}
 
 
 	public String getNom() {

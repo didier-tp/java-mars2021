@@ -11,11 +11,13 @@ public class MyApp {
 		//testStringEtTableau();
 		//testGc();
 		//testStatic();
-		MyApp myApp = new MyApp(); myApp.testMath();//si testMath() n'est pas static
+		//MyApp myApp = new MyApp(); myApp.testMath();//si testMath() n'est pas static
+		testEmploye();
 		testAvionV1();
 	}
 	
 	public static void testAvionV1() {
+		System.out.println("======== testAvionV1 ==========");
 		AvionV1 avion  = new AvionV1();
 		avion.initialiser(); //avec déjà pilote, hotesse
 		avion.addElement(new Personne("passager 1" , 35 , 78.8));
@@ -123,7 +125,54 @@ public class MyApp {
 	    System.out.println("fin de testGc");
 	}
 	
+	public static void testEmploye() {
+		System.out.println("======== testEmploye ==========");
+		Personne eOuP = null;
+		Employe e1 = new Employe();
+		e1.setNom("axelle Aire"); e1.setPoids(67.7); 
+		e1.setAge(33);
+		e1.setSalaire(2500.0);
+		//e1.afficher();
+		MyUtil.display(e1.toString());
+		
+		//eOuP=p1;
+		eOuP=e1;
+		//eOuP=new Employe();
+		eOuP.incrementerAge(); 
+		if(eOuP instanceof Employe) {
+			//Employe eOuPasEmploye = (Employe) eOuP;
+			//eOuPasEmploye.setSalaire(2700.0);
+			((Employe)eOuP).setSalaire(2700.0);
+		}
+		
+		//Personne eOuP = null; quelques lignes au dessus
+		eOuP = new Personne("nom1",45,67.0);
+		MyUtil.display("** eOuP.toString()="+eOuP.toString()); //Polymorphisme
+		eOuP = new Employe("nom1",45,67.0,2500.0);
+		MyUtil.display("** eOuP.toString()="+eOuP.toString()); //Polymorphisme
+		
+		
+		
+		Employe e2 = new Employe("alex Therieur",45,88.88,2000.0);//nom,age,poids,salaire
+	    e2.augmenterSalairePct(3); //3% augmentation
+	    e2.incrementerAge();
+		MyUtil.display(e2.toString());
+		
+		
+		Commercial c1;
+		c1 = new Commercial("c1",43,67.0,2000.0);
+		c1.setTauxCommission(0.5);
+		c1.setVentesDuMois(30000.0);
+		
+		Employe eOuC;
+		eOuC=c1;
+		MyUtil.display("salaireTotal de eOuC=c1 :"+eOuC.getSalaireTotal());
+		eOuC=e1;
+		MyUtil.display("salaireTotal de eOuC=e1 :"+eOuC.getSalaireTotal());
+	}
+	
 	public static void testPersonne() {
+		System.out.println("======== testPersonne ==========");
 		Personne p1 = null;
 		Personne p2 = null;
 		p1 = new Personne();

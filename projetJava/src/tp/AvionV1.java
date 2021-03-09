@@ -23,15 +23,17 @@ public class AvionV1 {
 		System.out.println("nombre d'éléments dans avion=" + this.nbElements);
 		//on affiche tous les éléments (Personne) référencés par le tableau
 		for(int i=0;i<nbElements;i++) {
-			System.out.println(tabElements[i]); //avec .toString() implicite
+			//System.out.println(tabElements[i]); //avec .toString() implicite
 			//ou bien explicitement tabElements[i].toString()
+			System.out.println(tabElements[i].toString());
+			//POLYMORPHISME ICI sur .toString() (version Personne et Employe)
 		}
 	}
 	
 	public void initialiser() {
 		//on initialise un jeu de données
-		this.addElement(new Personne("pilote" , 45 , 68.8));
-		this.addElement(new Personne("hotesse" , 40 , 58.8));
+		this.addElement(new Employe("pilote",45,68.4,4000.0));
+		this.addElement(new Employe("hotesse",35,58.4,2000.0));
 	}
 
 
