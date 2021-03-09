@@ -7,7 +7,92 @@ public class MyApp {
         //testType();
         //testComparaison();
         //testCompte();
-		testPersonne();
+		//testPersonne();
+		testStringEtTableau();
+		testGc();
+	}
+	
+	public static void testStringEtTableau() {
+		String s1="azerty";
+		//construire s1Inverse et l'afficher (.charAt(i))
+		StringBuilder buffer=new StringBuilder(s1.length());
+		for(int i=s1.length()-1;i>=0;i--) {
+			buffer.append(s1.charAt(i));
+		}
+		String s1Inverse = buffer.toString();
+		System.out.println("s1Inverse ="+s1Inverse);
+		
+		String s2="juin";
+		//afficher en majuscule
+		String s2Maj = s2.toUpperCase();
+		System.out.println("s2Maj="+s2Maj);
+		
+		String s3="rueXy;75001;Paris";
+		//récuperer et afficher la sous-chaine entre les 2 ;
+		//.indexOf()  , .lastIndexOf() , .substring
+		int posPremierPointVirgule=s3.indexOf(";");
+		int posDeuxiemePointVirgule=s3.lastIndexOf(";");
+		String codePostal = s3.substring(posPremierPointVirgule+1, posDeuxiemePointVirgule);
+		System.out.println("codePostal="+codePostal);
+		
+		//construire un tableau de 10 entier avec les valeurs 0,1,9
+		int[] tab1 = new int[10];
+		for(int i=0;i<tab1.length;i++) {
+			tab1[i]=i;
+		}
+		int[] tab2 = new int[tab1.length];
+		//construire un 2eme tableau ou chaque valeur est le double du tableau 1 
+		//+ affichage (version boucle while ET AUSSI boucle for)
+		for(int i=0;i<tab1.length;i++) {
+			tab2[i]=2*tab1[i];
+		}
+		int index=0;
+		while(index<tab2.length) {
+			System.out.println(tab2[index]);
+			index++;
+		}
+		
+		int tab3[] = { 2 , 5 , 8 ,9, 4 };
+		//calculer et afficher la moyenne
+		int somme=0;
+		for(int i=0;i<tab3.length;i++) {
+			somme+=tab3[i];//somme=somme+tab3[i];
+		}
+		int moyenne = somme/tab3.length;
+		System.out.println("moyenne="+moyenne);
+	}
+	
+	public static void travaillerAvec10Comptes() {
+		int n=10;
+		Compte[] tabRefCompte = new Compte[n];
+	    for(int i=0;i<n;i++) {
+	    	tabRefCompte[i]=new Compte(String.valueOf(i),i);
+	    	System.out.println(tabRefCompte[i].toString());
+	    }
+	    //NB: lorsque l'exécution de la sous fonction travaillerAvec10Comptes()
+	    //est terminée , la variable locale tabRefCompte est supprimée (dans la zone mémoire "pile")
+	    //et indirectement tous les objets Compte référencés par le tableau
+	    //vont se retrouver "plus référencés" et seront donc automatiquement détruits
+	    //par le "ramasse miettes / garbage collector" en tâche de fond différée.
+	}
+	
+	public static void testGc() {
+		int n=10;
+	    Personne[] tabRefPers = new Personne[n];
+	    for(int i=0;i<n;i++) {
+	    	tabRefPers[i]=new Personne();
+	    }
+	    for(int i=0;i<n;i++) {
+	    	tabRefPers[i]=null;
+	    }
+	    travaillerAvec10Comptes();
+	    System.gc();
+	    try {
+			Thread.sleep(1000*5); //5000ms = 5s de pause
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+	    System.out.println("fin de testGc");
 	}
 	
 	public static void testPersonne() {
@@ -28,6 +113,9 @@ public class MyApp {
 		}else {
 			System.out.println("p1 et p2 ont des valeurs différentes");
 		}
+		
+		if(p1 instanceof Personne) System.out.println("p1 est une personne");
+		
 		
 		/*
 		int a; //variable locale (sans valeur par défaut)

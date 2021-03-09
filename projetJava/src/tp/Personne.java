@@ -20,6 +20,10 @@ public class Personne {
 		//this("?" , 0, 50.0); 
 		
 	}
+	
+	protected void finalize() {
+		System.out.println("finalize - objet Personne");
+	}
 
 
 	public Personne(String nom, int age, double poids) {

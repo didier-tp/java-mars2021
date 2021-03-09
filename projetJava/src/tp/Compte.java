@@ -12,11 +12,14 @@ public class Compte {
 	// Méthodes :
 	public Compte() { numero="0"; solde=0; } // constructeur par défaut
 	
-	
 	public Compte(String numero, float solde) {
 		super();
 		this.numero = numero;
 		this.solde = solde;
+	}
+	
+	protected void finalize() {
+		System.out.println("finalize - objet Compte");
 	}
 	
 	public void debiter(float montant) { solde = solde - montant; }
