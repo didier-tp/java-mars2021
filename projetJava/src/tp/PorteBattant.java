@@ -6,8 +6,8 @@ public class PorteBattant extends Porte {
      private void pivoter(int angle) {
     	 this.angleRotation=angle;
     	 System.out.println("porte a 1 battant, angle rotation:"+this.angleRotation);
-    	 if(angle==90) System.out.println("  porte a 1 battant maintenant fermée");
-    	 if(angle==0) System.out.println("   porte a 1 battant maintenant ouverte");
+    	 if(angle==90) System.out.println("  porte a 1 battant maintenant ouverte");
+    	 if(angle==0) System.out.println("   porte a 1 battant maintenant fermée");
      }
 
 	@Override

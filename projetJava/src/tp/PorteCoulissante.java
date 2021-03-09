@@ -6,8 +6,8 @@ public class PorteCoulissante extends Porte {
     private void glisser(int translation) {
     	this.translationGlissiere = translation;
     	System.out.println("porte coulissante avec translation:" + this.translationGlissiere);
-    	if(translation==80) System.out.println("  porte coulissante maintenant fermée");
-   	    if(translation==0) System.out.println("   porte coulissante maintenant ouverte");
+    	if(translation==80) System.out.println("  porte coulissante maintenant ouverte");
+   	    if(translation==0) System.out.println("   porte coulissante maintenant fermée");
     }
 
 	
