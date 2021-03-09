@@ -3,7 +3,7 @@ package tp;
 public class MyApp {
 
 	public static void main(String[] args) {
-		System.out.println("Hello world 2");
+		System.out.println("MyApp");
         //testType();
         //testComparaison();
         //testCompte();
@@ -11,7 +11,7 @@ public class MyApp {
 		//testStringEtTableau();
 		//testGc();
 		//testStatic();
-		//testMath();
+		MyApp myApp = new MyApp(); myApp.testMath();//si testMath() n'est pas static
 		testAvionV1();
 	}
 	
@@ -35,7 +35,7 @@ public class MyApp {
         MyUtil.display("vitesseMaxiAgglomeration="+Reglements.vitesseMaxiAgglomeration);
     }
 
-    public static void testMath() {
+    public /*static*/ void testMath() {
         double x = Math.sin(Math.PI/2);
         System.out.println("x="+x);
     }
