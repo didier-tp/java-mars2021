@@ -9,7 +9,7 @@ public class RacineCarreeApp {
 			double x = Double.parseDouble(args[0]);
 			double y = SousCalcul.racineCarree(x); //si static
 			//double y = (new SousCalcul()).racineCarree(x); //si pas static
-			System.out.println("racinne carrée de " + x + "=" + y);
+			System.out.println("racine carrée de " + x + "=" + y);
 		} catch (ArrayIndexOutOfBoundsException e) {
 			System.err.println("il manque un argument au lancement du programme");
 			System.err.println("exemple: java  tp.RacineCarreeApp  81");
@@ -27,14 +27,16 @@ public class RacineCarreeApp {
 		
 		//===========
 		
-		try {
-			double x=9.0;
-			//double x=-9;
-			double y = SousCalcul.racineCarree(x);
-			System.out.println("y="+y);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+		
+			try {
+				double x=9.0;
+				//double x=-9;
+				double y = SousCalcul.racineCarree(x);
+				System.out.println("y="+y);
+			} catch (MyArithmeticException e) {
+				e.printStackTrace();
+			}
+		
 	}
 	
 	public static void main_v1(String[] args) {
