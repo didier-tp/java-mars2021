@@ -41,7 +41,7 @@ public class MyApp {
 	public static void testDivision(){
 		try {
 			int a=6;
-			int b=0;
+			int b=3;
 			int res = a /b;
 			System.out.println("res="+res);
 		} catch (Exception e) {
