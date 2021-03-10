@@ -1,10 +1,19 @@
 package tp;
 
+import java.util.Date;
+
+import tp.porte.Porte;
+import tp.porte.PorteBattant;
+import tp.porte.PorteCoulissante;
+import tp.util.MyUtil;
 
 public class MyApp {
 
 	public static void main(String[] args) {
 		System.out.println("MyApp");
+		//java.util.Date d = new java.util.Date();
+		Date d = new Date();
+		System.out.println("date="+d);
         //testType();
         //testComparaison();
         //testCompte();

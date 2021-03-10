@@ -1,4 +1,4 @@
-package tp;
+package tp.porte;
 
 public class PorteBattant extends Porte {
      private int angleRotation=0; //0 fermée , 90 degré = ouvert

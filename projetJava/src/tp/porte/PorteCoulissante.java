@@ -1,4 +1,4 @@
-package tp;
+package tp.porte;
 
 public class PorteCoulissante extends Porte {
     private int translationGlissiere=0; //0 si fermée , 80 si ouvert (cm) 

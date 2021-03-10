@@ -1,4 +1,4 @@
-package tp;
+package tp.porte;
 
 public abstract class Porte {
 	private String couleur;
