@@ -10,15 +10,15 @@ public class PorteBattant extends Porte {
     	 if(angle==0) System.out.println("   porte a 1 battant maintenant fermée");
      }
 
-	@Override
-	public void ouvrir() {
-		this.pivoter(90);//90 degrés
-	}
+     @Override
+ 	public void ouvrir() {
+ 		this.pivoter(90);//90 degrés
+ 	}
 
-	@Override
-	public void fermer() {
-		this.pivoter(0);//0 degré
-	}
-     
+ 	@Override
+ 	public void fermer() {
+ 		this.pivoter(0);//0 degré
+ 	}
+      
      
 }

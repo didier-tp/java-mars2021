@@ -1,6 +1,6 @@
 package tp;
 
-public class Personne {
+public class Personne implements Descriptible {
 	private String nom; /*="?";*/ // null par defaut
 	private int age; //0 par defaut
 	private double poids; //0.0 par défaut
@@ -116,7 +116,9 @@ public class Personne {
 		return true;
 	}
 
-
-	
+	@Override
+	public String getDesignation() {
+		return this.toString();
+	}
 
 }

@@ -15,7 +15,20 @@ public class MyApp {
 		//MyApp myApp = new MyApp(); myApp.testMath();//si testMath() n'est pas static
 		//testEmploye();
 		//testAvionV1();
-		testPorte();
+		testAvionV2();
+		//testPorte();
+	}
+	
+	
+	public static void testAvionV2() {
+		System.out.println("======== testAvionV2 ==========");
+		AvionV2 avion  = new AvionV2();
+		avion.initialiser(); //avec déjà pilote, hotesse
+		avion.addElement(new Personne("passager 1" , 35 , 78.8));
+		avion.addElement(new Personne("passager 2" , 25 , 68.8));
+		avion.addElement(new Bagage("valise" , 25 , 56.8));
+		avion.addElement(new Bagage("sac" , 10 , 15.8));
+		avion.afficher();
 	}
 	
 	public static void testAvionV1() {
