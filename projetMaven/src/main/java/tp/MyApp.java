@@ -1,14 +1,14 @@
 package tp;
 
+import java.text.NumberFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
+import java.util.ResourceBundle;
 import java.util.Set;
-
-import javax.swing.JOptionPane;
 
 import tp.data.Devise;
 
@@ -39,6 +39,7 @@ public class MyApp {
 		testDate();
 		testEnum();
 		testPrintf();
+		testBundleSelonLangueLocale();
 	}
 	
 	public static void testEnum() {
@@ -78,7 +79,13 @@ public class MyApp {
 		   fonctionAvecNbArgsVariables();
 		   fonctionAvecNbArgsVariables("rouge");
 		   fonctionAvecNbArgsVariables("vert", "bleu" , "noir");
-		   
+	}
+	
+	public static void testBundleSelonLangueLocale() {
+		ResourceBundle myResources = null;
+		myResources = ResourceBundle.getBundle("tp.MyResources");
+		String libelle = myResources.getString("msg.welcome");
+		System.out.println("libelle_welcome="+libelle);
 	}
 	
 	public static void testDate() {
@@ -109,12 +116,12 @@ public class MyApp {
 		listeDevises.add(new Devise("JPY","Yen",120.0));
 		
 		java.util.Collections.sort(listeDevises, new java.util.Comparator<Devise>(){
-				@Override
-				public int compare(Devise d1, Devise d2) {
-					if (d1.getChange() > d2.getChange()) { return 1; }
-					else if (d1.getChange() < d2.getChange()) { return -1; }
-					else { return 0; }
-				}
+			@Override
+			public int compare(Devise d1, Devise d2) {
+				if (d1.getChange() > d2.getChange()) { return 1; }
+				else if (d1.getChange() < d2.getChange()) { return -1; }
+				else { return 0; }
+			}
 			});
 		
 		System.out.println("listeDevises="+listeDevises);//listeDevises.toString() appelé implicitement
@@ -136,7 +143,11 @@ public class MyApp {
 		}
 		//calculer et afficher la moyenne
 		double moyenne=somme/listeD.size();
-		System.out.println("moyenne="+moyenne);
+		System.out.println("moyenne approchée(sans mise en forme)="+moyenne);
+		NumberFormat nfmt = NumberFormat.getInstance();
+		nfmt.setMaximumFractionDigits(2);
+		nfmt.setMinimumFractionDigits(2);
+		System.out.println("La moyenne arrondie à 2 chiffres après la virgule est : " + nfmt.format(moyenne));
 		
 		System.out.println("avant tri, listeD="+listeD);
 		java.util.Collections.sort(listeD);//trier
