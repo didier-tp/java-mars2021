@@ -38,6 +38,7 @@ public class MyApp {
 		//m3();
 		testDate();
 		testEnum();
+		testPrintf();
 	}
 	
 	public static void testEnum() {
@@ -54,6 +55,30 @@ public class MyApp {
 	        case MARDI: System.out.println("Mardi c'est brocoli"); break;
 	        default : System.out.println("autre jour");
 	        }
+	}
+	
+	public static void fonctionAvecNbArgsVariables(String ...args) {
+		System.out.println("**** fonctionAvecNbArgsVariables appelee avec " + args.length + " args");
+		if(args.length > 0)
+			System.out.println(args[0]);
+		if(args.length > 1)
+			System.out.println(args[1]);
+		for(int i=2; i<args.length ; i++)
+			System.out.println(args[i]);
+	}
+	
+	public static void testPrintf() {
+		   System.out.println("***************** testPrintf ******");
+		   int a=5;
+		   double x=12.798765;
+		   String s="abc";
+		   //NB: %.2f pour n'afficher que 2 chiffres après la virgule
+		   System.out.printf("a=%d , x=%.2f , s=%s", a, x, s);
+		   
+		   fonctionAvecNbArgsVariables();
+		   fonctionAvecNbArgsVariables("rouge");
+		   fonctionAvecNbArgsVariables("vert", "bleu" , "noir");
+		   
 	}
 	
 	public static void testDate() {
