@@ -1,6 +1,16 @@
 package tp;
 
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Date;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+
 import javax.swing.JOptionPane;
+
+import tp.data.Devise;
 
 /**
  * 
@@ -11,51 +21,146 @@ import javax.swing.JOptionPane;
  */
 
 public class MyApp {
+	
+	public enum Jour { DIMANCHE , LUNDI, MARDI, MERCREDI , JEUDI , VENDREDI, SAMEDI };
 
-	public MyApp() {
-		// TODO Auto-generated constructor stub
+	
+	public static void printCollection(Collection<String> col){
+		for(String e : col) {
+			System.out.println("e="+e);
+		}
 	}
-
-	/**
-	 * fonction principale.
-	 * @param args = arguments falcultatifs du programme
-	 */
+	
 	public static void main(String[] args) {
-		//JOptionPane.showMessageDialog(null, "MyApp");
-		System.out.println("MyApp");
-		testDivision();
-	  try {
-			double x=9.0;
-			double y = racineCarree(x);
-			System.out.println(y);
-			x=-9;
-			y = racineCarree(x);
-			System.out.println(y);
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		//m1();
+		m2();
+		//...
+		//m3();
+		testDate();
+		testEnum();
+	}
+	
+	public static void testEnum() {
+		System.out.println("***************** testEnum ******");
+		Jour j0 = Jour.DIMANCHE; 
+		Jour j1 = Jour.LUNDI; 
+		System.out.println("j1="+j1 + " , j1.ordinal()=" + j1.ordinal());
+		
+		for (Jour j : Jour.values() )
+			System.out.println(j + " [" + j.ordinal() + "]" );
+		switch(j1) {
+		   //NB: bizarrement pas de case Jour.LUNDI mais case LUNDI
+	        case LUNDI: System.out.println("Lundi c'est ravioli"); break;
+	        case MARDI: System.out.println("Mardi c'est brocoli"); break;
+	        default : System.out.println("autre jour");
+	        }
+	}
+	
+	public static void testDate() {
+		   System.out.println("***************** testDate ******");
+		   //java.util.Date d = new java.util.Date(); //sans import
+		   Date d = new Date(); //date aujourd'hui à l'instant présent (mb ms depuis 01/01/1970 GMT)
+		   //System.nanoTime()
+		   /*
+		   Calendar cal = Calendar.getInstance();
+		   cal.set(1969,7-1,11); //11/07/1969
+		   d=cal.getTime();
+		   */
+		   System.out.println("d="+d);
+		   SimpleDateFormat simpleDateFormat_us = new SimpleDateFormat("yyyy-MM-dd");
+		   String sdate_us = simpleDateFormat_us.format(d);
+		   System.out.println("sdate_us="+sdate_us);
+		   SimpleDateFormat simpleDateFormat_fr = new SimpleDateFormat("dd/MM/yyyy");
+		   String sdate_fr = simpleDateFormat_fr.format(d);
+		   System.out.println("sdate_fr="+sdate_fr);
+		}
+	
+	public static void m3() {
+		List<Devise> listeDevises = new ArrayList<>();
+		Devise d1 = new Devise("EUR","Euro",1.0);
+		listeDevises.add(d1);
+		listeDevises.add(new Devise("USD","Dollar",1.1));
+		listeDevises.add(new Devise("GBP","Livre",0.9));
+		listeDevises.add(new Devise("JPY","Yen",120.0));
+		
+		java.util.Collections.sort(listeDevises, new java.util.Comparator<Devise>(){
+				@Override
+				public int compare(Devise d1, Devise d2) {
+					if (d1.getChange() > d2.getChange()) { return 1; }
+					else if (d1.getChange() < d2.getChange()) { return -1; }
+					else { return 0; }
+				}
+			});
+		
+		System.out.println("listeDevises="+listeDevises);//listeDevises.toString() appelé implicitement
+	}
+	
+	public static void m2() {
+		System.out.println("***************** m2, testListe ******");
+		//déclarer et construire une liste de Double
+		List<Double> listeD = new ArrayList<>();
+		//ajouter quelques valeurs dans la liste
+		//ex: 1.2  3.3   5    2.8  2.9  4.0
+		listeD.add(1.2);		listeD.add(3.3);
+		listeD.add(5.0);		listeD.add(2.8);
+		listeD.add(2.9);		listeD.add(4.0);
+		//parcourir les valeurs de la liste et calculer la somme 
+		double somme =0.0;
+		for(Double d : listeD) {
+			somme+=d;//ou bien somme=somme+d;
+		}
+		//calculer et afficher la moyenne
+		double moyenne=somme/listeD.size();
+		System.out.println("moyenne="+moyenne);
+		
+		System.out.println("avant tri, listeD="+listeD);
+		java.util.Collections.sort(listeD);//trier
+		System.out.println("apres tri, listeD="+listeD);
+	}
+	
+	public static void m1() {
+		Set<String> set1 = new HashSet<String>();
+		set1.add("France");
+		set1.add("Espagne");
+		//set1.add("France"); //ligne inutile car France déjà ajouté
+		printCollection(set1);
+		
+		//List<String> liste1 = new LinkedList<String>();
+		//List<Object> listeChoses = new ArrayList<Object>();
+		List<String> liste1 = new ArrayList<String>();
+		liste1.add("lundi");
+		liste1.add("mardi");
+		liste1.add("mercredi");
+		liste1.add("jeudi");
+		//liste1.add(5); erreur vue par le compilateur
+		liste1.remove("lundi");
+		System.out.println("nb elts de liste1="+ liste1.size());
+        //liste1.clear();
+		
+		printCollection(liste1);
+		
+		for(String jour : liste1) {
+			System.out.println("jour="+jour);
 		}
 		
-	}
-	
-	public static void testDivision(){
-		try {
-			int a=6;
-			int b=3;
-			int res = a /b;
-			System.out.println("res="+res);
-		} catch (Exception e) {
-			e.printStackTrace();
-			//System.err.println(e.getMessage());
+		for(int i=0;i<liste1.size();i++) {
+			String jour = liste1.get(i); //ressemble à tab1[i]
+			System.out.println("i="+i +" jour="+jour);
 		}
+		
+        System.out.println("liste1="+liste1.toString());
+        
+        
+        List<Integer> liste2 = new ArrayList<Integer>();
+        //List<int> liste2Bis = new ArrayList<int>(); IMPOSSIBLE car int n'est pas un cas particulier de Object
+        //liste2.add(new Integer(10));
+        liste2.add(10); 
+        liste2.add(20);
+        for(Integer val : liste2) {
+			System.out.println("val="+val);
+		}
+        
 	}
 	
-	public static double racineCarree(double x) throws RuntimeException{
-		if(x>=0)
-			return Math.sqrt(x);
-		else
-			throw new RuntimeException("racine carree interdite sur valeur negative");
-	}
 	
-
 }

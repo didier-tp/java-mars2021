@@ -9,6 +9,7 @@ public class TestCollectionAppV1SansGeneric {
 		List liste1 = new ArrayList();
 		liste1.add("lundi");
 		liste1.add("mardi");
+		//liste1.add(new Integer(6)); //techniquement faisable mais déconseillé
 		liste1.add("mercredi");
 		liste1.add("jeudi");
 		liste1.remove("lundi");
