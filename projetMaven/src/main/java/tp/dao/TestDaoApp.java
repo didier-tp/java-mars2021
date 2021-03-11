@@ -8,16 +8,37 @@ public class TestDaoApp {
 	
 	
 	public static void main(String[] args) {
+		testCRUD_complet("MS",true);
+		//testCRUD_complet("MS2",false);
+		//testElementaire();
+	}
 	
+	public static void testElementaire() {
+		 DeviseDao deviseDao = null; //DeviseDao est une interface
+	     deviseDao = new DeviseDaoJdbc();
+	     
+	   //Récuperer toute la liste et afficher les devises 1 par 1 (1 par ligne)
+	        List<Devise> toutesDevises = deviseDao.rechercherToutesDevises();
+	        for(Devise d : toutesDevises) {
+	        	System.out.println("\t"+d); // "\t" est une tabulation
+	        }
+	}
+	
+	
+	public static void testCRUD_complet(String pk , boolean suppression) {
+		if(pk==null) pk = "MS" ; //code de la nouvelle monnaie ajoutée
+		//suppression = true si suppression à la fin
+		
         DeviseDao deviseDao = null; //DeviseDao est une interface
-        deviseDao = new DeviseDaoSimulation();
+        //deviseDao = new DeviseDaoSimulation();
+        deviseDao = new DeviseDaoJdbc();
         Devise deviseDollar = deviseDao.rechercherDevise("USD");
         System.out.println("deviseDollar= "+deviseDollar);
         
         //Tests qui enchaine ajout , recup liste complete
         //modif , recupere via code pour verfier mise à jour
         //suppression
-        Devise nouvelleDevise = new Devise("MS","Monnaie Singe",1223445555.0);
+        Devise nouvelleDevise = new Devise(pk,"Monnaie Singe",1223445555.0);
         deviseDao.creerDevise(nouvelleDevise); //creer/ajouter/sauvegarder
         
         //Récuperer toute la liste et afficher les devises 1 par 1 (1 par ligne)
@@ -31,17 +52,20 @@ public class TestDaoApp {
         deviseAmodifier.setChange(3455.666);
         deviseDao.updateDevise(deviseAmodifier);
         
-        //...récuper via deviseDao.rechercherDevise la devise de code ="MS"
+        //...récuper via deviseDao.rechercherDevise la devise de code pk="MS"
         //afficher les valeurs
-        Devise deviseMS_relue=deviseDao.rechercherDevise("MS");
+        Devise deviseMS_relue=deviseDao.rechercherDevise(pk);
         System.out.println("deviseMS_relue="+ deviseMS_relue);
         
-        //...supprimer la monnaie de code "MS" + eventuelle verification
-        deviseDao.supprimerDevise("MS");
-        deviseMS_relue=deviseDao.rechercherDevise("MS");
-        if(deviseMS_relue==null) {
-        	System.out.println("devise MS bien suprimee");
+        if(suppression) {
+	        //...supprimer la monnaie de code pk="MS" + eventuelle verification
+	        deviseDao.supprimerDevise(pk);
+	        deviseMS_relue=deviseDao.rechercherDevise(pk);
+	        if(deviseMS_relue==null) {
+	        	System.out.println("devise MS bien suprimee");
+	        }
         }
+        
         //toutesDevises = deviseDao.rechercherToutesDevises();
         //System.out.println("toutesDevises apres suppression:"+toutesDevises);
 	}

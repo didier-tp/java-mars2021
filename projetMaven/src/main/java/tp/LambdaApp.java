@@ -33,14 +33,14 @@ public class LambdaApp {
         }
         
         //trier par ordre croissant de prix avec une lambda expression avec ? : ou une soustraction
+        /*
+        Collections.sort(listeProduits, 
+		        (p1,p2)->p1.getPrixHt()==p2.getPrixHt()?0:((p1.getPrixHt()<p2.getPrixHt())?-1:1) );
         
-        //Collections.sort(listeProduits, 
-			//	        (p1,p2)->p1.getPrixHt()==p2.getPrixHt()?0:((p1.getPrixHt()<p2.getPrixHt())?-1:1) );
         
-        
-        //Collections.sort(listeProduits, 
-         //				(Produit p1,Produit p2)->{ return (int)(100*(p1.getPrixHt() -p2.getPrixHt()));} );
-        
+        Collections.sort(listeProduits, 
+         				(Produit p1,Produit p2)->{ return (int)(100*(p1.getPrixHt() -p2.getPrixHt()));} );
+        */
         Collections.sort(listeProduits, 
         				(p1,p2)->(int)(100*(p1.getPrixHt() -p2.getPrixHt())));
         
@@ -52,7 +52,7 @@ public class LambdaApp {
         
         //trier par odre alphabétique sur le label avec une lambda expression qui utilise .compareTo() sur la sous partie label
         Collections.sort(listeProduits, 
-				(p1,p2)->p1.getLabel().compareTo(p2.getLabel()));
+				(p1,p2)-> p1.getLabel().compareTo(p2.getLabel()));
         
         //afficher
         System.out.println("apres tri par label:");
@@ -65,7 +65,7 @@ public class LambdaApp {
        
        //filtrer les produits de prix >= 3.0 et <= 3.5 , &&
        List<Produit> listeProduitsFiltres = filtrerListe(listeProduits,
-    		                                             (p)-> p.getPrixHt()>=3.0 && p.getPrixHt()<=3.5 );
+    		         (p)-> p.getPrixHt()>=3.0 && p.getPrixHt()<=3.5 );
         
        /* 
        List<Produit> listeProduitsFiltres = filtrerListe(listeProduits,
