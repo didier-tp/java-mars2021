@@ -1,5 +1,9 @@
 package tp.data;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import tp.util.CsvIgnore;
+
 //import javax.xml.bind.annotation.XmlRootElement;
 //import com.fasterxml.jackson.annotation.JsonIgnore;
 //import tp.util.CsvIgnore;
@@ -7,11 +11,14 @@ package tp.data;
 //@XmlRootElement(name = "produit")
 public class Produit {
 	private Integer id;
+	
+	
 	private String label;
+	
 	private Double prixHt;
 	
-	//@CsvIgnore
-	//@JsonIgnore
+	@CsvIgnore
+	@JsonIgnore
 	private Double tauxTva;
 
 	

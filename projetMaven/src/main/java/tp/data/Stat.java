@@ -1,5 +1,7 @@
 package tp.data;
 
+import tp.util.CsvIgnore;
+
 //import tp.util.CsvIgnore;
 
 public class Stat {
@@ -7,7 +9,7 @@ public class Stat {
 	private Double somme;
 	private Double moyenne;
 	
-	//@CsvIgnore
+	@CsvIgnore
 	private Double ecartType;
 
 

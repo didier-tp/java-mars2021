@@ -3,6 +3,7 @@ package tp.dao;
 import java.util.List;
 
 import tp.data.Devise;
+import tp.data.Produit;
 
 public class TestDaoApp {
 	
@@ -11,6 +12,22 @@ public class TestDaoApp {
 		testCRUD_complet("MS",true);
 		//testCRUD_complet("MS2",false);
 		//testElementaire();
+		testProduitDao();
+	}
+	
+	public static void testProduitDao() {
+		ProduitDao produitDao = new ProduitDaoJdbc();
+	     System.out.println("************ testProduitDao *****");
+	   
+	        List<Produit> tousProduits = produitDao.rechercherTousProduits();
+	        for(Produit p : tousProduits) {
+	        	System.out.println("\t"+p); // "\t" est une tabulation
+	        }
+	        
+	   //ajout de nouveau produit:
+	        Produit nouveauProduit = new Produit(null,"nouveau produit",12.13 , 20.0);
+	        Produit produitInsere = produitDao.creerProduit(nouveauProduit); //creer/ajouter/sauvegarder
+            System.out.println("produit ajoute:" + produitInsere);	        
 	}
 	
 	public static void testElementaire() {
