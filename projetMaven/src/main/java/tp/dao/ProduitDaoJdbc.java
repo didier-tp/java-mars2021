@@ -26,7 +26,9 @@ public class ProduitDaoJdbc implements ProduitDao {
 			ResultSet rsKeys = null;
 			Integer pk;
 			String reqSql = "INSERT INTO produit(label , prix_ht, taux_tva) VALUES(?,?,?)";
-			PreparedStatement pst = cn.prepareStatement(reqSql,Statement.RETURN_GENERATED_KEYS);
+			PreparedStatement pst = 
+					cn.prepareStatement(reqSql,
+							            Statement.RETURN_GENERATED_KEYS);
 			pst.setString(1, p.getLabel()); //valeur de remplacement du premier ?
 			pst.setDouble(2, p.getPrixHt()); //valeur de remplacement du second  ?
 			pst.setDouble(3, p.getTauxTva()); //valeur de remplacement du troisieme ?

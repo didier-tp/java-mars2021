@@ -13165,7 +13165,7 @@ cd /d %~dp0
 REM MariaDB est une version complétement open source 
 REM de MySQL (plus facile à installer)
 
-set MYSQL_HOME=C:\Program Files\MariaDB 10.4
+set MYSQL_HOME=C:\Program Files\MariaDB 10.5
 
 REM option -p pour demander à saisir le mot de passe (ex: root)
 "%MYSQL_HOME%/bin/mysql" -u root -p &lt; init_db.sql
@@ -13195,8 +13195,11 @@ USD     dollar  1.1</code></pre>
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Ajout-de-fichier-de-configuration-dans-l'application-java:">Ajout de fichier de configuration dans l'application java:<a class="anchor-link" href="#Ajout-de-fichier-de-configuration-dans-l'application-java:">&#182;</a></h2><p>Créer dans <strong>src/main/resources/</strong> le nouveau fichier  <strong>paramDB-mysql.properties</strong> comportant  la configuration suivante (à peut être adapter sur l'aspect password ):</p>
-<h1 id="driver-JDBC-(ex:-com.mysql.jdbc.Driver-pour-MySql)">driver JDBC (ex: com.mysql.jdbc.Driver pour MySql)<a class="anchor-link" href="#driver-JDBC-(ex:-com.mysql.jdbc.Driver-pour-MySql)">&#182;</a></h1><h1 id="(necessite-&quot;mysql-connector-...jar-dans-le-CLASSPATH)">(necessite "mysql-connector-...jar dans le CLASSPATH)<a class="anchor-link" href="#(necessite-&quot;mysql-connector-...jar-dans-le-CLASSPATH)">&#182;</a></h1><p>driver=<strong>com.mysql.cj.jdbc.Driver</strong></p>
-<h1 id="url-de-la-base-de-donn&#233;e-(ex:-jdbc:mysql://localhost/baseX)">url de la base de donn&#233;e (ex: jdbc:mysql://localhost/baseX)<a class="anchor-link" href="#url-de-la-base-de-donn&#233;e-(ex:-jdbc:mysql://localhost/baseX)">&#182;</a></h1><p>url=<strong>jdbc:mysql://localhost:3306/deviseDb?serverTimezone=UTC</strong></p>
+<p><code>#driver JDBC (ex: com.mysql.jdbc.Driver pour MySql)</code></p>
+<p><code>#(necessite "mysql-connector-...jar dans le CLASSPATH)</code></p>
+<p>driver=<strong>com.mysql.cj.jdbc.Driver</strong></p>
+<p><code>#url de la base de donnée (ex: jdbc:mysql://localhost/baseX)</code></p>
+<p>url=<strong>jdbc:mysql://localhost:3306/deviseDb?serverTimezone=UTC</strong></p>
 <p>username=<strong>root</strong></p>
 <p>password=<strong>root</strong></p>
 <p>Ce fichier qui sera analysé par du code java servira à établir une connexion avec la base de données préparées ci-dessus.</p>

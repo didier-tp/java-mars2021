@@ -2,7 +2,7 @@
 <html>
 <head><meta charset="utf-8" />
 
-<title>17b_TP_DAO_JDBC</title>
+<title>17b_TP_DAO_JDBC_Solutions</title>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
@@ -13077,7 +13077,10 @@ div#notebook {
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Solution-du-TP-&quot;DAO-JDBC&quot;">Solution du TP "DAO JDBC"<a class="anchor-link" href="#Solution-du-TP-&quot;DAO-JDBC&quot;">&#182;</a></h2><div class="highlight"><pre><span></span><span class="kn">package</span> <span class="nn">tp.dao</span><span class="p">;</span>
+<h2 id="TP-&quot;DAO-JDBC-&#224;-compl&#233;ter&quot;">TP "DAO JDBC &#224; compl&#233;ter"<a class="anchor-link" href="#TP-&quot;DAO-JDBC-&#224;-compl&#233;ter&quot;">&#182;</a></h2><p>Ce TP doit être effectué juste après de TD "17a_TD_JDBC" .</p>
+<p>L'objectif principal est le compléter le code de la classe <strong>tp.dao.DeviseDaoJdbc</strong> .
+dont le début du code est rappelé ci après:</p>
+<div class="highlight"><pre><span></span><span class="kn">package</span> <span class="nn">tp.dao</span><span class="p">;</span>
 
 <span class="kn">import</span> <span class="nn">java.sql.Connection</span><span class="p">;</span>
 <span class="kn">import</span> <span class="nn">java.sql.PreparedStatement</span><span class="p">;</span>
@@ -13091,58 +13094,22 @@ div#notebook {
 
 <span class="kd">public</span> <span class="kd">class</span> <span class="nc">DeviseDaoJdbc</span> <span class="kd">implements</span> <span class="n">DeviseDao</span> <span class="p">{</span>
 
-    <span class="c1">//INSERT INTO devise (code,d_change,monnaie) VALUES (&#39;EUR&#39;,1,&#39;euro&#39;); dans init_db.sql</span>
+    <span class="c1">//INSERT INTO devise (code,d_change,monnaie) </span>
+    <span class="c1">//     VALUES (&#39;EUR&#39;,1,&#39;euro&#39;); dans init_db.sql</span>
+
     <span class="kd">private</span> <span class="n">String</span> <span class="n">typeBase</span><span class="o">=</span><span class="s">&quot;mysql&quot;</span><span class="p">;</span>
     <span class="c1">//private String typeBase=&quot;h2&quot;;</span>
 
     <span class="nd">@Override</span>
     <span class="kd">public</span> <span class="n">Devise</span> <span class="nf">creerDevise</span><span class="p">(</span><span class="n">Devise</span> <span class="n">d</span><span class="p">)</span> <span class="p">{</span>
-        <span class="n">Connection</span> <span class="n">cn</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
-        <span class="k">try</span> <span class="p">{</span>
-            <span class="n">cn</span><span class="o">=</span><span class="n">MyJdbcUtil</span><span class="p">.</span><span class="na">etablishConnection</span><span class="p">(</span><span class="n">typeBase</span><span class="p">);</span>
-
-            <span class="c1">//Statement st = cn.createStatement();</span>
-            <span class="c1">//String reqSql = &quot;INSERT INTO devise(code,d_change,monnaie) VALUES(&#39;m1&#39;,12.4,&#39;monnaie1&#39;)&quot;;</span>
-            <span class="c1">//st.executeUpdate(reqSql);</span>
-
-            <span class="n">String</span> <span class="n">reqSql</span> <span class="o">=</span> <span class="s">&quot;INSERT INTO devise(code,d_change,monnaie) VALUES(?,?,?)&quot;</span><span class="p">;</span>
-            <span class="n">PreparedStatement</span> <span class="n">pst</span> <span class="o">=</span> <span class="n">cn</span><span class="p">.</span><span class="na">prepareStatement</span><span class="p">(</span><span class="n">reqSql</span><span class="p">);</span>
-            <span class="n">pst</span><span class="p">.</span><span class="na">setString</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">d</span><span class="p">.</span><span class="na">getCode</span><span class="p">());</span> <span class="c1">//valeur de remplacement du premier ?</span>
-            <span class="n">pst</span><span class="p">.</span><span class="na">setDouble</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">d</span><span class="p">.</span><span class="na">getChange</span><span class="p">());</span> <span class="c1">//valeur de remplacement du second  ?</span>
-            <span class="n">pst</span><span class="p">.</span><span class="na">setString</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="n">d</span><span class="p">.</span><span class="na">getNom</span><span class="p">());</span> <span class="c1">//valeur de remplacement du troisieme ?</span>
-            <span class="n">pst</span><span class="p">.</span><span class="na">executeUpdate</span><span class="p">();</span>
-             <span class="c1">//fermetures dans l&#39;ordre inverse des ouvertures</span>
-            <span class="n">pst</span><span class="p">.</span><span class="na">close</span><span class="p">();</span>
-        <span class="p">}</span> <span class="k">catch</span> <span class="p">(</span><span class="n">Exception</span> <span class="n">e</span><span class="p">)</span> <span class="p">{</span>
-            <span class="n">e</span><span class="p">.</span><span class="na">printStackTrace</span><span class="p">();</span>
-        <span class="p">}</span><span class="k">finally</span> <span class="p">{</span>
-            <span class="n">MyJdbcUtil</span><span class="p">.</span><span class="na">closeConnection</span><span class="p">(</span><span class="n">cn</span><span class="p">);</span>
-        <span class="p">}</span>
+        <span class="c1">//CODE A COMPLETER (futur TP)</span>
         <span class="k">return</span> <span class="n">d</span><span class="p">;</span>
     <span class="p">}</span>
 
     <span class="nd">@Override</span>
     <span class="kd">public</span> <span class="n">Devise</span> <span class="nf">rechercherDevise</span><span class="p">(</span><span class="n">String</span> <span class="n">code</span><span class="p">)</span> <span class="p">{</span>
         <span class="n">Devise</span> <span class="n">devise</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
-        <span class="n">Connection</span> <span class="n">cn</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
-        <span class="k">try</span> <span class="p">{</span>
-            <span class="n">cn</span><span class="o">=</span><span class="n">MyJdbcUtil</span><span class="p">.</span><span class="na">etablishConnection</span><span class="p">(</span><span class="n">typeBase</span><span class="p">);</span>
-            <span class="n">String</span> <span class="n">reqSql</span> <span class="o">=</span> <span class="s">&quot;SELECT * FROM devise WHERE code=?&quot;</span><span class="p">;</span>
-            <span class="n">PreparedStatement</span> <span class="n">pst</span> <span class="o">=</span> <span class="n">cn</span><span class="p">.</span><span class="na">prepareStatement</span><span class="p">(</span><span class="n">reqSql</span><span class="p">);</span>
-            <span class="n">pst</span><span class="p">.</span><span class="na">setString</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">code</span><span class="p">);</span>
-            <span class="n">ResultSet</span> <span class="n">rs</span> <span class="o">=</span> <span class="n">pst</span><span class="p">.</span><span class="na">executeQuery</span><span class="p">();</span>
-            <span class="k">if</span><span class="p">(</span><span class="n">rs</span><span class="p">.</span><span class="na">next</span><span class="p">())</span> <span class="p">{</span>
-                <span class="n">devise</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Devise</span><span class="p">(</span><span class="n">rs</span><span class="p">.</span><span class="na">getString</span><span class="p">(</span><span class="s">&quot;code&quot;</span><span class="p">),</span>
-                                    <span class="n">rs</span><span class="p">.</span><span class="na">getString</span><span class="p">(</span><span class="s">&quot;monnaie&quot;</span><span class="p">),</span>
-                                    <span class="n">rs</span><span class="p">.</span><span class="na">getDouble</span><span class="p">(</span><span class="s">&quot;d_change&quot;</span><span class="p">));</span>
-            <span class="p">}</span>
-            <span class="n">rs</span><span class="p">.</span><span class="na">close</span><span class="p">();</span> <span class="c1">//fermetures dans l&#39;ordre inverse des ouvertures</span>
-            <span class="n">pst</span><span class="p">.</span><span class="na">close</span><span class="p">();</span>
-        <span class="p">}</span> <span class="k">catch</span> <span class="p">(</span><span class="n">Exception</span> <span class="n">e</span><span class="p">)</span> <span class="p">{</span>
-            <span class="n">e</span><span class="p">.</span><span class="na">printStackTrace</span><span class="p">();</span>
-        <span class="p">}</span><span class="k">finally</span> <span class="p">{</span>
-            <span class="n">MyJdbcUtil</span><span class="p">.</span><span class="na">closeConnection</span><span class="p">(</span><span class="n">cn</span><span class="p">);</span>
-        <span class="p">}</span>
+        <span class="c1">//CODE A COMPLETER (futur TP)</span>
         <span class="k">return</span> <span class="n">devise</span><span class="p">;</span>
     <span class="p">}</span>
 
@@ -13194,26 +13161,49 @@ div#notebook {
 
     <span class="nd">@Override</span>
     <span class="kd">public</span> <span class="kt">void</span> <span class="nf">supprimerDevise</span><span class="p">(</span><span class="n">String</span> <span class="n">code</span><span class="p">)</span> <span class="p">{</span>
-        <span class="n">Connection</span> <span class="n">cn</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
-        <span class="k">try</span> <span class="p">{</span>
-            <span class="n">cn</span><span class="o">=</span><span class="n">MyJdbcUtil</span><span class="p">.</span><span class="na">etablishConnection</span><span class="p">(</span><span class="n">typeBase</span><span class="p">);</span>
-
-            <span class="n">String</span> <span class="n">reqSql</span> <span class="o">=</span> <span class="s">&quot;DELETE FROM devise WHERE code=?&quot;</span><span class="p">;</span>
-            <span class="n">PreparedStatement</span> <span class="n">pst</span> <span class="o">=</span> <span class="n">cn</span><span class="p">.</span><span class="na">prepareStatement</span><span class="p">(</span><span class="n">reqSql</span><span class="p">);</span>
-            <span class="n">pst</span><span class="p">.</span><span class="na">setString</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">code</span><span class="p">);</span> <span class="c1">//valeur de remplacement du premier  ?</span>
-            <span class="n">pst</span><span class="p">.</span><span class="na">executeUpdate</span><span class="p">();</span>
-             <span class="c1">//fermetures dans l&#39;ordre inverse des ouvertures</span>
-            <span class="n">pst</span><span class="p">.</span><span class="na">close</span><span class="p">();</span>
-        <span class="p">}</span> <span class="k">catch</span> <span class="p">(</span><span class="n">Exception</span> <span class="n">e</span><span class="p">)</span> <span class="p">{</span>
-            <span class="n">e</span><span class="p">.</span><span class="na">printStackTrace</span><span class="p">();</span>
-        <span class="p">}</span><span class="k">finally</span> <span class="p">{</span>
-            <span class="n">MyJdbcUtil</span><span class="p">.</span><span class="na">closeConnection</span><span class="p">(</span><span class="n">cn</span><span class="p">);</span>
-        <span class="p">}</span>
-
+        <span class="c1">//CODE A COMPLETER (futur TP)</span>
     <span class="p">}</span>
 
 <span class="p">}</span>
 </pre></div>
+<h2 id="Quelques-indications:">Quelques indications:<a class="anchor-link" href="#Quelques-indications:">&#182;</a></h2><p>type de requête SQL pour une insertion:</p>
+<blockquote><p>INSERT INTO devise(code,d_change,monnaie) VALUES('m1',12.4,'monnaie1')";</p>
+</blockquote>
+<p>type de requête SQL pour une recherche par clef primaire:</p>
+<blockquote><p>SELECT * FROM devise WHERE code='MS'</p>
+</blockquote>
+<p>type de requête SQL pour une supression:</p>
+<blockquote><p>DELETE FROM devise WHERE code='MS'</p>
+</blockquote>
+<hr>
+<p>il faudra basuculer sur l'appel de la méthode <strong>testCRUD_complet("MS",true);</strong> au sein de la méthode main() de  <strong>tp.dao.TestDaoApp</strong> :</p>
+<div class="highlight"><pre><span></span><span class="kn">package</span> <span class="nn">tp.dao</span><span class="p">;</span>
+
+<span class="kn">import</span> <span class="nn">java.util.List</span><span class="p">;</span>
+<span class="kn">import</span> <span class="nn">tp.data.Devise</span><span class="p">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">TestDaoApp</span> <span class="p">{</span>
+
+
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">testCRUD_complet</span><span class="p">(</span><span class="s">&quot;MS&quot;</span><span class="p">,</span><span class="kc">true</span><span class="p">);</span>
+        <span class="c1">//testCRUD_complet(&quot;MS2&quot;,false);</span>
+        <span class="c1">//testElementaire();</span>
+    <span class="p">}</span>
+
+    <span class="p">....</span>
+<span class="p">}</span>
+</pre></div>
+<p>Comportement attendu quand tout va bien:</p>
+
+<pre><code>deviseDollar= Devise [code=USD, nom=dollar, change=1.1]
+    Devise [code=EUR, nom=euro, change=1.0]
+    Devise [code=GBP, nom=livre, change=0.9]
+    Devise [code=JPY, nom=yen, change=123.8]
+    Devise [code=MS, nom=Monnaie Singe, change=1.223445555E9]
+    Devise [code=USD, nom=dollar, change=1.1]
+deviseMS_relue=Devise [code=MS, nom=Monnaie Singe Reevaluee, change=3455.666]
+devise MS bien suprimee</code></pre>
 
 </div>
 </div>
